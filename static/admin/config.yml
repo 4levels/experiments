@@ -1,0 +1,58 @@
+backend:
+  name: github
+  repo: leroy-brothers/experiments
+
+media_folder: static/assets
+public_folder: assets
+
+collections:
+  - name: pages
+    label: "Pages"
+    files:
+      - file: "src/pages/index.md"
+        label: "Landing Page"
+        name: "index"
+        fields:
+          - {label: "Template Key", name: "templateKey", widget: "hidden", default: "index-page"}
+          - {label: Title, name: title, widget: string}
+          - {label: Image, name: image, widget: image}
+          - {label: Heading, name: heading, widget: string}
+          - {label: Subheading, name: subheading, widget: string}
+          # - label: Mainpitch
+          #   name: mainpitch
+          #   widget: object
+          #   fields:
+          #     - label: Title
+          #       name: title
+          #       widget: string
+          #     - label: Description
+          #       name: description
+          #       widget: text
+          - {label: Description, name: description, widget: string}
+      - label: "Experiments"
+        name: "experimemts"
+        file: "src/pages/experiments/index.md"
+        fields:
+          - {label: Title, name: title, widget: string}
+          - {label: Image, name: image, widget: image}
+          - {label: Intro text, name: intro, widget: text}
+  - name: experiment
+    label: Experiment
+    folder: experiment
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { name: date, label: Date, widget: datetime }
+      - { name: title, label: Title }
+      - { name: body, label: Body, widget: markdown }
+  - name: artwork
+    label: Artwork
+    folder: artwork
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { name: photo, label: Photo, widget: image }
+      - { name: title, label: Title }
+      - { name: body, label: Body, widget: markdown }
+      - { name: price, label: Price, widget: number, required: false }
+      - { name: dimensions, label: Dimensions, widget: string, required: false }
